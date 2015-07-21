@@ -1,0 +1,2 @@
+recursive-include cabot/templates *
+recursive-include cabot/static *
