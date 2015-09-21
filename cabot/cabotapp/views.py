@@ -161,7 +161,7 @@ class GraphiteStatusCheckForm(StatusCheckForm):
             'active',
             'importance',
             'expected_num_hosts',
-            'expected_num_metrics',
+            'allowed_num_failures',
             'debounce',
         )
         widgets = dict(**base_widgets)
@@ -575,7 +575,7 @@ def get_object_form(model_type):
 class GeneralSettingsForm(forms.Form):
     first_name = forms.CharField(label='First name', max_length=30, required=False)
     last_name  = forms.CharField(label='Last name', max_length=30, required=False)
-    email_address = forms.CharField(label='Email Address', max_length=30, required=False)
+    email_address = forms.CharField(label='Email Address', max_length=75, required=False) #We use 75 and not the 254 because Django 1.6.8 only supports 75. See commit message for details.
     enabled = forms.BooleanField(label='Enabled', required=False)
 
 class InstanceListView(LoginRequiredMixin, ListView):
