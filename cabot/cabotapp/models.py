@@ -465,7 +465,7 @@ class StatusCheck(PolymorphicModel):
             result.succeeded = False
         except Exception as e:
             result = StatusCheckResult(check=self)
-            logger.error("Error performing check: %s" % (e,))
+            logger.exception("Error performing check")
             result.error = u'Error in performing check: %s' % (e,)
             result.succeeded = False
         finish = timezone.now()
